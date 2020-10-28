@@ -31,10 +31,11 @@ namespace :echocat do
       authors = book_row['authors']
       description = book_row['description']
 
-      Book.where(isbn: isbn).first_or_create do |book|
+      Edition.where(isbn: isbn).first_or_create do |edition|
         # TODO: find_or_create authors
-        book.title = title
-        book.description = description
+        edition.title = title
+        edition.edition_type = 'book'
+        edition.description = description
       end
     end
 
