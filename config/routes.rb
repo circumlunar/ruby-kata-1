@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  resources :magazines, only: [:index, :show]
-  resources :books, only: [:index, :show]
-  resources :authors, only: [:index, :show]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :editions, only: [:index, :show] do
+    resources :authors, only: [:index]
+  end
+
+  resources :authors, only: [:index, :show] do
+    resources :editions, only: [:index]
+  end
 end

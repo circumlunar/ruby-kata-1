@@ -1,19 +1,18 @@
 class AuthorsController < ApplicationController
   before_action :set_author, only: [:show]
 
-  # GET /authors
-  # GET /authors.json
   def index
     @authors = Author.all
+
+    render json: @authors, each_serializer: Echocat::AuthorSerializer, serializer: ActiveModel::Serializer::CollectionSerializer
   end
 
-  # GET /authors/1
-  # GET /authors/1.json
   def show
+    render json: @author, serializer: Echocat::AuthorSerializer
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_author
       @author = Author.find(params[:id])
     end
